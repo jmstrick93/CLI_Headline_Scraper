@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "CLI_Headline_Scraper"
+require "environment"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
