@@ -81,7 +81,6 @@ class CLIHeadlineScraper::CLI
     puts "To go to a story, type the network name and then the article number (e.g., BBC 2)"
 
     selection = gets.strip.split(" ")
-    binding.pry
     if selection.length == 2
       selection[1] = selection[1].to_i
     elsif selection.length > 2
