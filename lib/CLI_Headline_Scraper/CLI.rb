@@ -64,15 +64,30 @@ class CLIHeadlineScraper::CLI
       _____________________________________
 
 
-      To go to a story, type the network name and then the article number (e.g., BBC 2)
-
-
       HEREDOC
+
+      select_article
+
     when "exit"
       puts "Goodbye"
       exit
     end
 
   end
+
+  def select_article
+    puts "To go to a story, type the network name and then the article number (e.g., BBC 2)"
+
+    selection = gets.strip.split(" ")
+    selection[1] = selection[1].to_i
+
+    case selection[0]
+
+    when "BBC"
+
+
+    when
+
+
 
 end
