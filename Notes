@@ -13,6 +13,8 @@ Which headlines would you like to view?
 <user selects 'Main' by entering 1.>
 August 27, 2017:
 
+To go to a webpage,enter the network name (e.g. "BBC").
+
 BBC
 
 1. "Houston Flooding 'Epic, Catastrophic'"  http://www.bbc.com/news/world-us-canada-41067315
@@ -66,4 +68,4 @@ NPR
 
 <note: decide whether you want to retrieve the headline that appears on the website or the headline that appears on the article once it is opened.>
 
-<note: possibly make an option so that one of the top 3 articles is retrieved from each website, intead of just the first one? or maybe retrieve all 3 top articles?> << i decided on this.
+<note: possibly make an option so that one of the top 3 articles is retrieved from each website, instead of just the first one? or maybe retrieve all 3 top articles?> << i decided on this.
