@@ -12,13 +12,12 @@ class CLIHeadlineScraper::CLI
 
     puts "Or type 'exit'."
 
-    selection = gets.strip
-
-    make_selection(selection)
+    make_selection
 
   end
 
-  def make_selection(selection)
+  def make_selection
+    selection = gets.strip
     case selection
     when "1"
       puts <<~HEREDOC
