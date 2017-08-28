@@ -1,0 +1,69 @@
+Hello, welcome to Headline Scaper!
+Which headlines would you like to view?
+
+1. Main
+2. Politics
+3. World
+4. Tech
+5. Alt-Right
+6. Left-Wing
+7. All
+8. Satire
+
+<user selects 'Main' by entering 1.>
+August 27, 2017:
+
+BBC
+
+1. "Houston Flooding 'Epic, Catastrophic'"  http://www.bbc.com/news/world-us-canada-41067315
+
+2.
+
+3.
+
+MSNBC
+
+1. "FEMA Chief: Harvey Damage 'is just the begining'"
+http://www.msnbc.com/weekends-with-alex-witt/watch/fema-head-forecasts-painful-recovery-after-harvey-1033202755922
+
+2.
+
+3.
+
+CNN
+
+1."'Catastrophic flooding traps Houston residents'"
+http://www.cnn.com/2017/08/27/us/harvey-landfall/index.html
+
+2.
+
+3.
+
+FOX NEWS
+
+1.
+
+2.
+
+3.
+
+AL JAZEERA
+
+1.
+
+2.
+
+3.
+
+NPR
+
+1.
+
+2.
+
+3.
+
+
+<note: decide whether you want to retrieve the headline that appears on the website or the headline that appears on the article once it is opened.>
+
+<note: possibly make an option so that one of the top 3 articles is retrieved from each website, intead of just the first one? or maybe retrieve all 3 top articles?> << i decided on this.

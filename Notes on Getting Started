@@ -1,0 +1,65 @@
+How to build a CLI Gem (overview)
+1. Plan your gem, imagine your interface
+2. Start with the project structure - google
+3. Start with the entry point - the file run
+4. force that to build the CLI interface
+5. stub out that interface
+6. start making things real
+7. discover objects
+8. program
+
+
+1&2 Plan your gem, imagine your interface/ start with the project structure
+  A - Write out an example of the interface you expect your program to work with.
+      What to you want it to do, what should it look like, etc?
+      Think about the user's perspective.
+
+  B - Decide on file structures.
+      YOU DONT HAVE TO START FROM SCRATCH ON THIS
+      THERE ARE LOTS OF CONVENTIONS YOU CAN FOLLOW.
+      JUST GOOGLE HOW TO MAKE A GEM.
+
+      you can also make one automatically using Bundler.
+      ```bundler gem <gemname>```
+      save these notes in your gem directory
+      watch railscasts.com/episodes/245-new-gem-with-bundler
+
+      do more reasearch too, specifically on making a CLI gem. (google how ot mkae a CLI gem)
+
+
+3. Start with the "file run"
+      EXECUTABLE goes in bin directory.
+
+      ruby shebang line: #!/usr/bin/env ruby (PUT IT AT TOP OF BIN FILE so computer knows to execute it as ruby)
+
+      you dont want to have to tell the computer to use ruby explicitly when executing the file. (i.e. ruby bin/daily-deal).  You want it to be like './bin/daily-deal'
+          wont work at first because the file does not have permissions.  go into the file's directory and type 'ls -lah' to see file's permissions.
+
+          if it says rw- instead of rwx (read write execute), add permissions using the check-mod (chmod) command: 'chmod +x <filename>'
+
+          this teaches the OS how to interpret these executable ruby files!
+
+4&5. Force that to build the CLI interface/ stub out that interface
+          dont want to load your executable CLI file with logic and complicated code. You want some over object to handle that.
+
+          then write the "code you wish you had" in the CLI file. (example around 11:30, 12:00 mins in video)
+
+          dont try to deal with the whole program at once.  LAY OUT ARCHITECTURE FIRST!!! (starting with CLI controller is a pretty good idea.)
+
+          then try to connect all of the stuff together!
+
+          <<-DOC
+          look at HEREDOCS for ruby and what they are.  might be useful?
+          >>
+
+          make classes that spit out fake data (e.g. puts out an example string), but mimic how the program will be put together.  This is temporary and just to lay the foundation of the program.
+
+          by the end of this, you will pretty much have a fully "functioning" program, but with all fake data.
+
+6&7. Start making things real/ discover objects.
+
+  think about some of the basic concepts for objects in your program, and think about their attributes. WRITE OUT IN PLAINTEXT FIRST.
+
+  again think about coding with the "code I wish I had." DONT SECOND GUEST YOURSELF!  You may have to change parts of the stub program you just wrote, but that's ok!
+
+  let the error messages guide you!!
