@@ -16,7 +16,7 @@ class CLIHeadlineScraper::CLI
 
   end
 
-  def make_selection
+  def make_selection #rename to select_group
     selection = gets.strip
     case selection
     when "1"
