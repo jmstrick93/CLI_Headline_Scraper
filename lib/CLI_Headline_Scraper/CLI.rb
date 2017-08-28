@@ -1,4 +1,5 @@
 #Our CLI Controller
+require 'pry'
 
 class CLIHeadlineScraper::CLI
 
@@ -12,7 +13,10 @@ class CLIHeadlineScraper::CLI
 
     puts "Or type 'exit'."
 
-    select_group
+    select_group #initial menu selection of what you want to see
+    select_item
+    retrieve_item #retrieves webpage by using either #retrieve_hompage or #retrieve_article.
+
 
   end
 
@@ -64,10 +68,8 @@ class CLIHeadlineScraper::CLI
       _____________________________________
 
 
-      To go to a story, type the network name and then the article number (e.g., BBC 2)
-
-
       HEREDOC
+
     when "exit"
       puts "Goodbye"
       exit
@@ -75,4 +77,53 @@ class CLIHeadlineScraper::CLI
 
   end
 
+  def select_item #returns an array where arr[0] is the network name and arr[1] is the article number/
+    puts "To go to a story, type the network name and then the article number (e.g., BBC 2)"
+
+    selection = gets.strip.split(" ")
+    if selection.length == 2
+      selection[1] = selection[1].to_i
+    elsif selection.length > 2
+      puts "invalid entry"
+      select_item
+    end
+
+    selection
+
+  end
+
+  def retrieve_item
+  end
+
+  def retrieve_homepage
+  end
+
+  def retrieve_article
+  end
+
+
+
+#
+#
+#     case selection[0]
+#
+#     when networks.all[0]
+#       if selection.length > 1
+#         case selection[1]
+#         when "1"
+#           #load article 1
+#         when "2"
+#           #load article 2
+#         when "3"
+#           #load article 3
+#         end
+#       else
+#         #load BBC homepage
+#       end
+#
+#
+#
+#
+#
+#
 end
