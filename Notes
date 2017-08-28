@@ -69,3 +69,5 @@ NPR
 <note: decide whether you want to retrieve the headline that appears on the website or the headline that appears on the article once it is opened.>
 
 <note: possibly make an option so that one of the top 3 articles is retrieved from each website, instead of just the first one? or maybe retrieve all 3 top articles?> << i decided on this.
+
+HEADLINE OBJECTS will have @name, @text and @url variables
