@@ -12,11 +12,11 @@ class CLIHeadlineScraper::CLI
 
     puts "Or type 'exit'."
 
-    make_selection
+    select_group
 
   end
 
-  def make_selection
+  def select_group
     selection = gets.strip
     case selection
     when "1"
