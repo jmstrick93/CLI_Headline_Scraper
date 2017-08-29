@@ -1,10 +1,12 @@
 class Headline
-  @text
+
+  attr_accessor :network, :text, :url
+
   @@all = []
 
-  def initialize(network, text) #text will be input as a scraper object.
+  def initialize(network, text, url = nil) #text will eventually be input as a scraper object.
     @network = network
-    self.all << self
+    self.class.all << self
     network.headlines << self #belongs to network
     @text = text
   end

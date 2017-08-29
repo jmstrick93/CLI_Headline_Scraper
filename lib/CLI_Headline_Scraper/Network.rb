@@ -3,10 +3,10 @@ class Network
   attr_reader :name
   @@all = []
 
-  def initialize(name)
+  def initialize(name, homepage_url = nil)
     @name = name
     @headlines = [] #network has many headlines
-    self.all << self
+    self.class.all << self
   end
 
   def self.all
