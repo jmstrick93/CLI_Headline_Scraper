@@ -1,12 +1,15 @@
 class Headline
 
-  attr_accessor :network_name, :text, :url
+  attr_accessor :network_name, :network, :text, :url
 
   @@all = []
 
-  def initialize(network_name, text, url = nil) #text will eventually be input as a scraper object.
+  def initialize(network_name, text) #text will eventually be input as a scraper object.
     self.class.all << self
-    Network.find_by_name(network_name).headlines << self #belongs to network
+    @network_name = network_name
+    @network = Network.find_or_create_by_name(network_name)
+    @network.headlines << self
+     #belongs to network
     @text = text
   end
 
@@ -14,8 +17,9 @@ class Headline
     @@all
   end
 
-  def self.create
-    
+  def create_with_url
+  end
+
 
   def self.find_by_text(text)
     self.all.detect{|item| item.text == text}
