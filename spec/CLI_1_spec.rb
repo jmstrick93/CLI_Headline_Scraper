@@ -10,16 +10,21 @@ RSpec.describe CLI do
 
 
   describe '#call' do
-    it "Greets the user and asks them to select from a list of options." do
-      allow(cli).to receive(:gets).and_return("exit")
-      allow(cli).to receive(:exit)
+    context "When first called:" do
+      it "Greets the user and asks them to select from a list of options." do
+        allow(cli).to receive(:gets).and_return("exit")
+        allow(cli).to receive(:exit)
 
-      expect($stdout).to receive(:puts).with("Welcome to Headline Scraper")
-      expect($stdout).to receive(:puts).with("Please select which of the following headlines you would like to view:")
-      expect($stdout).to receive(:puts).at_least(:once)
+        expect($stdout).to receive(:puts).with("Welcome to Headline Scraper")
+        expect($stdout).to receive(:puts).with("Please select which of the following headlines you would like to view:")
+        expect($stdout).to receive(:puts).at_least(:once)
 
-      cli.call
+        cli.call
+      end
     end
+    # context "When entry is invalid or nonsensical:" do
+    #   it ""
+    # end
   end
 
 
@@ -119,7 +124,17 @@ RSpec.describe CLI do
     end
 
     context "When input is valid:" do
-      
+      it "accepts entries with no article number" do
+
+        allow($stdout).to receive(:puts).at_least(:once)
+
+        expect(cli).to receive(:gets).and_return("BBC")
+        expect($stdout).not_to receive(:puts).with("Invalid Entry")
+        allow(cli).to receive(:gets).and_return('exit')
+        allow(cli).to receive(:exit)
+
+        cli.select_item
+      end
     end
 
   end

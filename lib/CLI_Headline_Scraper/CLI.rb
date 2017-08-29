@@ -6,8 +6,10 @@ class CLI
     puts "Please select which of the following headlines you would like to view:"
 
     puts "  1. Main"
-    puts "  2. Politics"
-    puts "  3. Tech"
+    # puts "  2. Politics"
+    # puts "  3. Tech"
+
+    #removed the above so that no-one is seeing invalid options
 
     puts "Or type 'exit'."
 
@@ -137,7 +139,6 @@ class CLI
         self.exit_CLI
       end
     end
-
     selection
   end
 
