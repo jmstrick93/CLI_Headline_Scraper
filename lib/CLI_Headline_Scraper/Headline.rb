@@ -4,7 +4,7 @@ class Headline
 
   @@all = []
 
-  def initialize(network_name, text) #text will eventually be input as a scraper object.
+  def initialize(text, network_name) #text will eventually be input as a scraper object.
     self.class.all << self
     @network_name = network_name
     @network = Network.find_or_create_by_name(network_name)
@@ -17,7 +17,10 @@ class Headline
     @@all
   end
 
-  def create_with_url
+  def self.create_with_url(text, network_name, url)
+    headline = Headline.new(text, network_name)
+    headline.url = url
+    headline
   end
 
 
