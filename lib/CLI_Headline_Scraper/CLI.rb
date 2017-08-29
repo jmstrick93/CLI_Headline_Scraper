@@ -14,8 +14,6 @@ class CLI
     select_group #initial menu selection of what you want to see
     select_item
     retrieve_item #retrieves webpage by using either #retrieve_hompage or #retrieve_article.
-
-
   end
 
   def select_group
@@ -122,22 +120,24 @@ class CLI
       puts "To exit at any time, type 'exit'."
 
       selection = gets.strip
-      selection = selection.split(":")
-      selection[0].strip!
-      selection[0] = selection[0].upcase
-      if selection.length == 2
-        selection[1].strip!
-        selection[1] = selection[1].to_i
+      selection = selection.split(":") if selection != nil
+      if valid_selection?(selection)
+        selection[0].strip!
+        selection[0] = selection[0].upcase
+        if selection.length == 2
+          selection[1].strip!
+          selection[1] = selection[1].to_i
+        end
+
+      else
+        puts "Invalid Entry"
       end
 
-      if !valid_selection?(selection)
-        puts "Invalid Entry"
-
-      elsif selection[0] == 'EXIT'
+      if selection[0] == 'EXIT'
         self.exit_CLI
       end
     end
-    binding.pry
+
     selection
   end
 
