@@ -3,4 +3,4 @@ require 'require_all'
 
 require './lib/environment'
 
-CLIHeadlineScraper::CLI.new.call
+CLI.new.call

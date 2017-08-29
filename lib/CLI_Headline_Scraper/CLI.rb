@@ -1,7 +1,5 @@
 #Our CLI Controller
-require 'pry'
-
-class CLIHeadlineScraper::CLI
+class CLI
 
   def call
     puts "Welcome to Headline Scraper"
