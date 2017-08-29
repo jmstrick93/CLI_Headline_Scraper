@@ -84,8 +84,7 @@ class CLIHeadlineScraper::CLI
         HEREDOC
 
       when "exit"
-        puts "Goodbye"
-        exit
+        self.exit_CLI
       else
         puts "Invalid Selection"
         selection = nil
@@ -119,9 +118,12 @@ class CLIHeadlineScraper::CLI
     #currently accepts all entries that do not contain a colon.  Later make it so it checks whether the network entered exists.
     selection = nil
     until valid_selection?(selection)
-      puts "To go to a story, type the network name and then the article number, separated by a colon (e.g., BBC : 2)"
-      selection = gets.strip
+      puts "To go to a newtork homepage, just type the name of that network."
+      puts "To go to a specific story, type the network name and then the article number, separated by a colon (e.g., BBC : 2)"
+      #maybe later insert "back" functionality.
+      puts "To exit at any time, type 'exit'."
 
+      selection = gets.strip
       selection = selection.split(":")
       selection[0].strip!
       selection[0] = selection[0].upcase
@@ -132,10 +134,18 @@ class CLIHeadlineScraper::CLI
 
       if !valid_selection?(selection)
         puts "Invalid Entry"
+
+      elsif selection[0] == 'EXIT'
+        self.exit_CLI
       end
     end
     binding.pry
     selection
+  end
+
+  def exit_CLI
+    puts "Goodbye!"
+    exit
   end
 
   def retrieve_item

@@ -1,0 +1,26 @@
+
+[1mFrom:[0m /home/jim/code/projects/CLI_Headline_Scraper/lib/CLI_Headline_Scraper/CLI.rb @ line 137 CLIHeadlineScraper::CLI#select_item:
+
+    [1;34m118[0m: [32mdef[0m [1;34mselect_item[0m [1;34m#returns an array where arr[0] is the network name and arr[1] is the article number.[0m
+    [1;34m119[0m:   [1;34m#currently accepts all entries that do not contain a colon.  Later make it so it checks whether the network entered exists.[0m
+    [1;34m120[0m:   selection = [1;36mnil[0m
+    [1;34m121[0m:   [32muntil[0m valid_selection?(selection)
+    [1;34m122[0m:     puts [31m[1;31m"[0m[31mTo go to a story, type the network name and then the article number, separated by a colon (e.g., BBC : 2)[1;31m"[0m[31m[0m
+    [1;34m123[0m:     selection = gets.strip
+    [1;34m124[0m: 
+    [1;34m125[0m:     selection = selection.split([31m[1;31m"[0m[31m:[1;31m"[0m[31m[0m)
+    [1;34m126[0m:     selection[[1;34m0[0m].strip!
+    [1;34m127[0m:     selection[[1;34m0[0m] = selection[[1;34m0[0m].upcase
+    [1;34m128[0m:     [32mif[0m selection.length == [1;34m2[0m
+    [1;34m129[0m:       selection[[1;34m1[0m].strip!
+    [1;34m130[0m:       selection[[1;34m1[0m] = selection[[1;34m1[0m].to_i
+    [1;34m131[0m:     [32mend[0m
+    [1;34m132[0m: 
+    [1;34m133[0m:     [32mif[0m !valid_selection?(selection)
+    [1;34m134[0m:       puts [31m[1;31m"[0m[31mInvalid Entry[1;31m"[0m[31m[0m
+    [1;34m135[0m:     [32mend[0m
+    [1;34m136[0m:   [32mend[0m
+ => [1;34m137[0m:   binding.pry
+    [1;34m138[0m:   selection
+    [1;34m139[0m: [32mend[0m
+
