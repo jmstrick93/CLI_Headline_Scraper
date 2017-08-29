@@ -5,7 +5,7 @@ class Network
 
   def initialize(name)
     @name = name
-    @headlines = []
+    @headlines = [] #network has many headlines
     self.all << self
   end
 
