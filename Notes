@@ -71,3 +71,22 @@ NPR
 <note: possibly make an option so that one of the top 3 articles is retrieved from each website, instead of just the first one? or maybe retrieve all 3 top articles?> << i decided on this.
 
 HEADLINE OBJECTS will have @name, @text and @url variables
+
+
+
+
+cnn = Network.new("CNN")
+fox = Network.new("Fox News")
+msnbc = Network.new("MSNBC")
+
+fish = Headline.new("fish are falling from the sky", "CNN")
+cows = Headline.new("cows are falling from the sky", "CNN")
+bananas = Headline.new("bananas are falling from the sky", "CNN")
+
+apples = Headline.new("apples are falling from the sky", "Fox News")
+strawberries = Headline.new("strawberries are falling from the sky", "Fox News")
+kiwis = Headline.new("kiwis are falling from the sky", "Fox News")
+
+leaves = Headline.new("leaves are falling from the sky", "MSNBC")
+oranges = Headline.new("oranges are falling from the sky", "MSNBC")
+coins = Headline.new("coins are falling from the sky", "MSNBC")

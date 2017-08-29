@@ -23,31 +23,32 @@ class CLI
     retrieve_item #retrieves webpage by using either #retrieve_hompage or #retrieve_article.
   end
 
-  def select_group
 
+  def select_group
     selection = nil
     until !!selection
       selection = gets.strip
-
       case selection
       when "1"
-
-        #this will be replaced with something like
-          #Network.all.each do |network|
-            #network.articles.each.with_index(1) do |article, i|
-              #puts "#{i}. #{article.headline}"
-            #end
-          #end
-
-        #also maybe make #print_group separate from #select_group, but called within #select_group.
+        puts ""
         self.class.display_time
-
+        puts ""
+        self.print_group_headlines
       when "exit"
         self.exit_CLI
       else
         puts "Invalid Selection"
         selection = nil
       end
+    end
+  end
+
+
+  def print_group_headlines
+    Network.all.each do |network|
+      puts network.name
+      network.print_headlines
+      puts ""
     end
   end
 
