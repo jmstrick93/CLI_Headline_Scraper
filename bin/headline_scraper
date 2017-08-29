@@ -1,6 +1,12 @@
 #!/usr/bin/env ruby
 require 'require_all'
-
 require './lib/environment'
+
+###testing conditions###
+
+
+###end testing conditions###
+
+
 
 CLI.new.call

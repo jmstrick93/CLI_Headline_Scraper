@@ -1,4 +1,5 @@
 class Network
+
   attr_accessor :headlines
   attr_reader :name
 
@@ -12,6 +13,10 @@ class Network
 
   def self.all
     @@all
+  end
+
+  def self.find_by_name(name)
+    self.all.detect{|item| item.name == name}
   end
 
 

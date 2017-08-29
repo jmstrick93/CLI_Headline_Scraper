@@ -5,15 +5,17 @@ class Headline
   @@all = []
 
   def initialize(network_name, text, url = nil) #text will eventually be input as a scraper object.
-    @network_name = network_name
     self.class.all << self
-    network_name.headlines << self #belongs to network
+    Network.find_by_name(network_name).headlines << self #belongs to network
     @text = text
   end
 
   def self.all
     @@all
   end
+
+  def self.create
+    
 
   def self.find_by_text(text)
     self.all.detect{|item| item.text == text}
