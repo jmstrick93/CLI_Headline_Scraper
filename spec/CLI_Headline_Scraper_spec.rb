@@ -5,7 +5,4 @@ RSpec.describe CLIHeadlineScraper do
     expect(CLIHeadlineScraper::VERSION).not_to be nil
   end
 
-
-
-
 end
