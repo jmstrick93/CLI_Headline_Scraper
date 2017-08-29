@@ -53,6 +53,7 @@ class CLI
   end
 
   def valid_selection?(selection)
+    #later make entry invalid if selection[0] is an integer
     if selection == nil
       false
     elsif selection.length == 0
