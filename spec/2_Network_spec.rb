@@ -66,6 +66,10 @@ RSpec.describe Network do
 
 
     describe "#self.find_or_create_by_name" do
+      before(:each) {Network.class_variable_set(:@@all, [])}
+
+      let!(:bbc){Network.new("BBC")}
+      let!(:cnn){Network.new("CNN")}
 
       it "finds a network by name if it exists" do
         expect(Network.find_or_create_by_name("BBC")).to be(bbc)
@@ -73,15 +77,33 @@ RSpec.describe Network do
 
       it "creates that network if it does not exist" do
         fox = Network.find_or_create_by_name("Fox News")
-
         expect(Network.all).to include(fox)
       end
 
       it "does not create duplicate network objects" do
-
+        cnn2 = Network.find_or_create_by_name("CNN")
+        expect(Network.all.select{|network| network.name == "CNN"}.length).to eq(1)
       end
     end
 
+    describe "#print_headlines" do
+      before(:each) {Network.class_variable_set(:@@all, [])}
+      before(:each) {Headline.class_variable_set(:@@all, [])}
+
+      let!(:cnn){Network.new("CNN")}
+      let!(:fish){fish = Headline.new("fish are falling from the sky", "CNN")}
+      let!(:cows){Headline.new("cows are falling from the sky", "CNN")}
+      let!(:bananas){Headline.new("bananas are falling from the sky", "CNN")}
+
+      it "prints out the chosen network's headlines in an ordered list beginning with 1" do
+        expect($stdout).to receive(:puts).with("1. fish are falling from the sky")
+        expect($stdout).to receive(:puts).with("2. cows are falling from the sky")
+        expect($stdout).to receive(:puts).with("3. bananas are falling from the sky")
+
+        cnn.print_headlines
+
+      end
+    end
 
   end
 
