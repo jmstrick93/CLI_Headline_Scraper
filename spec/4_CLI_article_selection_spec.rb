@@ -2,7 +2,7 @@
 
 Rspec.describe CLI do
 
-  context 'Selecting only a network' do
+  context 'When selecting only a network' do
     describe '#go_to_homepage' do
       it 'opens the network homepage in-browser' do
 
@@ -11,7 +11,7 @@ Rspec.describe CLI do
     end
   end
 
-  context 'Selecting an article' do
+  context 'When selecting an article' do
     describe '#article_options' do
       it "offers the user the choice to retrieve article text to display inline" do #if too much, display article metadata instead
 
