@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe Network do
-  let!(:bbc){Network.new("BBC")}
-  let!(:cnn){Network.new("CNN")}
 
   context "Initialization" do
 
@@ -31,9 +29,9 @@ RSpec.describe Network do
       it "returns the class variable @@all" do
         expect(Network.all).to match_array([])
 
-        Network.class_variable_set(:@@all, [bbc])
+        bbc = Network.new("BBC")
 
-        expect(Network.all).to match_array([bbc])
+        expect(Network.all).to include(bbc)
       end
 
     end
@@ -41,13 +39,8 @@ RSpec.describe Network do
 
   context "Methods" do
 
-    before(:each) do
-      @@all = []
-    end
-
-
-    describe "#self.create_with_url" do
-      it "creates a network with an included homepage URL" do
+      describe "#self.create_with_url" do
+        it "creates a network with an included homepage URL" do
 
           new_network = Network.create_with_url("Al-Arabiya", "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwjbrbuh9f7VAhWK5SYKHYdmAzgQFggoMAA&url=https%3A%2F%2Fenglish.alarabiya.net%2F&usg=AFQjCNHHgd8PqaCna9geb3R3dF2ai_3D5Q")
 
@@ -58,20 +51,21 @@ RSpec.describe Network do
 
 
     describe "#self.find_by_name" do
+      before(:each) do
+        @@all = []
+      end
+
+      let!(:bbc){Network.new("BBC")}
+      let!(:cnn){Network.new("CNN")}
 
       it "returns nil if the network does not exist" do
-        arabiya = Network.new("Al-Arabiya")
-        cnn = Network.new("CNN")
         expect(Network.find_by_name("Fox News")).to be_nil
       end
 
       it "returns the network with the matching name if it does exist" do
-        binding.pry
-        expect Network.find_by_name("CNN").to eq()
-
+        expect(Network.find_by_name("CNN")).to be(cnn)
       end
     end
-
   end
 
 end
