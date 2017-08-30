@@ -66,6 +66,22 @@ RSpec.describe Network do
         expect(Network.find_by_name("CNN")).to be(cnn)
       end
     end
+
+
+    describe "#self.find_or_create_by_name" do
+
+      it "finds a network by name if it exists" do
+
+      end
+
+      it "creates that network if it does not exist" do
+
+      end
+
+      it "does not create duplicate network objects"
+    end
+
+
   end
 
 end
