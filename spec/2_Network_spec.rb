@@ -21,11 +21,10 @@ RSpec.describe Network do
 
   context "Relationships" do
 
-    before(:each) do
-      @@all = []
-    end
+    before(:each) {Network.class_variable_set(:@@all, [])}
 
     describe "#self.all" do
+
       it "returns the class variable @@all" do
         expect(Network.all).to match_array([])
 
@@ -51,9 +50,7 @@ RSpec.describe Network do
 
 
     describe "#self.find_by_name" do
-      before(:each) do
-        @@all = []
-      end
+      before(:each) {Network.class_variable_set(:@@all, [])}
 
       let!(:bbc){Network.new("BBC")}
       let!(:cnn){Network.new("CNN")}
@@ -71,15 +68,17 @@ RSpec.describe Network do
     describe "#self.find_or_create_by_name" do
 
       it "finds a network by name if it exists" do
-
+        expect(Network.find_or_create_by_name("BBC")).to be(bbc)
       end
 
       it "creates that network if it does not exist" do
+        fox = Network.find_or_create_by_name("Fox News")
 
+        expect(Network.all).to include(fox)
       end
 
       it "does not create duplicate network objects" do
-        
+
       end
     end
 
