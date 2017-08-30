@@ -16,7 +16,7 @@ RSpec.describe CLI do
         allow(cli).to receive(:exit)
 
         expect($stdout).to receive(:puts).with("Welcome to Headline Scraper")
-        expect($stdout).to receive(:puts).with("Please select which of the following headlines you would like to view:")
+        expect($stdout).to receive(:puts).with("Please select which of the following articles you would like to view:")
         expect($stdout).to receive(:puts).at_least(:once)
 
         cli.call
@@ -40,6 +40,49 @@ RSpec.describe CLI do
       allow($stdout).to receive(:puts)
       expect(cli).to receive(:exit)
       cli.exit_CLI
+    end
+  end
+
+
+  describe "#display_menu" do
+
+    after(:each){Article.class_variable_set(:@@all, [])}
+    after(:each){Network.class_variable_set(:@@all, [])}
+
+    it "displays the current time" do
+
+      Timecop.freeze(Time.now) do
+        expect($stdout).to receive(:puts).with(Time.new)
+        allow($stdout).to receive(:puts).at_least(:once)
+        cli.display_menu
+      end
+
+    end
+
+    it "cleanly displays the headlines for each network in a numbered list" do #this is awful, but I dont know how to clean it up
+
+      article1 = Article.new("fish are falling from the sky", "CNN")
+      article2 = Article.new("bananas are falling from the sky", "CNN")
+      article3 = Article.new("tubers are falling from the sky", "CNN")
+      article4 = Article.new("coins are falling from the sky", "Fox News")
+      article5 = Article.new("oranges are falling from the sky", "Fox News")
+      article6 = Article.new("apples have become sentient", "Fox News")
+
+      allow($stdout).to receive(:puts).at_least(:once)
+
+      expect($stdout).to receive(:puts).with("CNN")
+      expect($stdout).to receive(:puts).with("1. fish are falling from the sky")
+      expect($stdout).to receive(:puts).with("2. bananas are falling from the sky")
+      expect($stdout).to receive(:puts).with("3. tubers are falling from the sky")
+      expect($stdout).to receive(:puts).with("").exactly(3).times
+
+      expect($stdout).to receive(:puts).with("Fox News")
+      expect($stdout).to receive(:puts).with("1. coins are falling from the sky")
+      expect($stdout).to receive(:puts).with("2. oranges are falling from the sky")
+      expect($stdout).to receive(:puts).with("3. apples have become sentient")
+
+      cli.display_menu
+
     end
   end
 

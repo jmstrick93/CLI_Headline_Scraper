@@ -8,39 +8,18 @@ class CLI
 
   def call
     puts "Welcome to Headline Scraper"
-    puts "Please select which of the following headlines you would like to view:"
+    puts "Please select which of the following articles you would like to view:"
 
-    puts "  1. Main"
-    # puts "  2. Politics"
-    # puts "  3. Tech"
-
-    #removed the above so that no-one is seeing invalid options
-
-    puts "Or type 'exit'."
-
-    select_group #initial menu selection of what you want to see
+    display_menu #initial menu selection of what you want to see
     select_item
     retrieve_item #retrieves webpage by using either #retrieve_hompage or #retrieve_article.
   end
 
 
-  def select_group
-    selection = nil
-    until !!selection
-      selection = gets.strip
-      case selection
-      when "1"
-        puts ""
-        self.class.display_time
-        puts ""
-        self.print_group_headlines
-      when "exit"
-        self.exit_CLI
-      else
-        puts "Invalid Selection"
-        selection = nil
-      end
-    end
+  def display_menu
+    self.class.display_time
+    puts ""
+    self.print_group_headlines
   end
 
 
@@ -53,11 +32,17 @@ class CLI
   end
 
   def valid_selection?(selection)
-    #later make entry invalid if selection[0] is an integer
+    #later make entry invalid if selection[0] is an integer using 'false if selection.respond_to?(:to_i)
     if selection == nil
       false
     elsif selection.length == 0
       false
+    elsif selection.length == 1
+      if selection[0].to_i != 0
+        false
+      else
+        true
+      end
     elsif selection.length == 2
       if selection[1].to_i == 0
         false
