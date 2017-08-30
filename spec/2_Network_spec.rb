@@ -78,7 +78,9 @@ RSpec.describe Network do
 
       end
 
-      it "does not create duplicate network objects"
+      it "does not create duplicate network objects" do
+        
+      end
     end
 
 
