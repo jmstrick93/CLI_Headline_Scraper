@@ -47,7 +47,7 @@ RSpec.describe Article do
 
     end
 
-    context "finding a headline" do
+    context "finding an article" do
       before(:each){Article.class_variable_set(:@@all, [])}
 
       describe "#self.find_by_headline" do
