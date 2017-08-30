@@ -44,38 +44,54 @@ RSpec.describe Article do
         expect(Article.all).to include(new_article)
 
       end
-
     end
+  end
 
-    context "finding an article" do
-      before(:each){Article.class_variable_set(:@@all, [])}
 
-      describe "#self.find_by_headline" do
-        it "returns the article with the headline given as argument" do
-          article1 = Article.new("fish are falling from the sky", "CNN")
-          article2 = Article.new("bananas are falling from the sky", "CNN")
+  context "finding an article" do
+    before(:each){Article.class_variable_set(:@@all, [])}
 
-          found = Article.find_by_headline("bananas are falling from the sky")
+    describe "#self.find_by_headline" do
+      it "returns the article with the headline given as argument" do
+        article1 = Article.new("fish are falling from the sky", "CNN")
+        article2 = Article.new("bananas are falling from the sky", "CNN")
 
-          expect(found).to be(article2)
+        found = Article.find_by_headline("bananas are falling from the sky")
 
-        end
+        expect(found).to be(article2)
 
-        it "returns nil when there is no article found" do
-          article1 = Article.new("fish are falling from the sky", "CNN")
-          article2 = Article.new("bananas are falling from the sky", "CNN")
-
-          found = Article.find_by_headline("raindrops are falling from the sky")
-
-          expect(found).to be_nil
-
-        end
       end
 
-      describe "#self.find_by_network_name" do
-        it "returns an array of all articles belonging to the network with the given name" do
+      it "returns nil when there is no article found" do
+        article1 = Article.new("fish are falling from the sky", "CNN")
+        article2 = Article.new("bananas are falling from the sky", "CNN")
 
-        end
+        found = Article.find_by_headline("raindrops are falling from the sky")
+
+        expect(found).to be_nil
+
+      end
+    end
+
+    describe "#self.find_by_network_name" do
+      it "returns an array of all articles belonging to the network with the given name" do
+
+        cnn = Network.new("CNN")
+        fox = Network.new("Fox News")
+
+        article1 = Article.new("fish are falling from the sky", "CNN")
+        article2 = Article.new("bananas are falling from the sky", "CNN")
+        article3 = Article.new("tubers are falling from the sky", "Fox News")
+        article4 = Article.new("coins are falling from the sky", "Fox News")
+
+        found = Article.find_by_network_name("Fox News")
+        expect(found).to eq(fox.articles)
+
+      end
+
+      it "returns an empty array when no articles are found" do
+        found = Article.find_by_network_name("Hello World")
+        expect(found).to eq([])
       end
 
     end
