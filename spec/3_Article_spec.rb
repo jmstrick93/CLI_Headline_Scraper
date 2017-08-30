@@ -96,4 +96,22 @@ RSpec.describe Article do
 
     end
   end
+
+  context "belongs to a Network" do
+    before(:each){Article.class_variable_set(:@@all, [])}
+    before(:each){Network.class_variable_set(:@@all, [])}
+
+    describe "#initialize" do
+
+      it "assigns the Article instance a Network" do
+
+        cnn = Network.new("CNN")
+        
+        article1 = Article.new("fish are falling from the sky", "CNN")
+        expect(article1.network).to be(cnn)
+
+      end
+    end
+
+  end
 end
