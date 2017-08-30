@@ -88,12 +88,12 @@ RSpec.describe Network do
 
     describe "#print_headlines" do
       before(:each) {Network.class_variable_set(:@@all, [])}
-      before(:each) {Headline.class_variable_set(:@@all, [])}
+      before(:each) {Article.class_variable_set(:@@all, [])}
 
       let!(:cnn){Network.new("CNN")}
-      let!(:fish){fish = Headline.new("fish are falling from the sky", "CNN")}
-      let!(:cows){Headline.new("cows are falling from the sky", "CNN")}
-      let!(:bananas){Headline.new("bananas are falling from the sky", "CNN")}
+      let!(:fish){fish = Article.new("fish are falling from the sky", "CNN")}
+      let!(:cows){Article.new("cows are falling from the sky", "CNN")}
+      let!(:bananas){Article.new("bananas are falling from the sky", "CNN")}
 
       it "prints out the chosen network's headlines in an ordered list beginning with 1" do
         expect($stdout).to receive(:puts).with("1. fish are falling from the sky")

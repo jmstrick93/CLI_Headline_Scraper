@@ -1,13 +1,13 @@
 class Network
 
-  attr_accessor :headlines, :url
+  attr_accessor :articles, :url
   attr_reader :name
 
   @@all = []
 
   def initialize(name)
     @name = name
-    @headlines = [] #network has many headlines
+    @articles = [] #network has many articles
     self.class.all << self
   end
 
@@ -31,8 +31,8 @@ class Network
 
 
   def print_headlines
-    self.headlines.each.with_index(1) do |headline, i|
-      puts "#{i}. #{headline.text}"
+    self.articles.each.with_index(1) do |article, i|
+      puts "#{i}. #{article.headline}"
     end
   end
 
