@@ -25,33 +25,36 @@ class CLI
 
   def print_group_headlines
     Network.all.each do |network|
-      puts network.name
-      network.print_headlines
-      puts ""
+      puts network.name #prints network name once
+      network.print_headlines # prints network headlines in numbered list
+      puts "" #for spacing
     end
   end
 
   def valid_selection?(selection)
-    #later make entry invalid if selection[0] is an integer using 'false if selection.respond_to?(:to_i)
-    if selection == nil
+    if selection == nil #
       false
     elsif selection.length == 0
       false
     elsif selection.length == 1
-      if selection[0].to_i != 0
+      if selection[0].to_i != 0 #makes furst first item isnt Integer
         false
       else
         true
       end
     elsif selection.length == 2
-      if selection[1].to_i == 0
-        false
-      elsif selection[1].to_i > 3
+      if selection[0].to_i != 0 #makes sure first item isnt Integer
         false
       else
-        true
+        if selection[1].to_i == 0 #makes sure second item IS integer
+          false
+        elsif selection[1].to_i > 3 #makes sure there are not >3 entries
+          false
+        else
+          true
+        end
       end
-    elsif selection.length > 2
+    elsif selection.length > 2 #makes sure entry isnt longer than 3
       false
     else
       true
