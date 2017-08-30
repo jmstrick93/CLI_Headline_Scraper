@@ -107,4 +107,22 @@ RSpec.describe Network do
 
   end
 
+  context "has many articles" do
+    before(:each) {Network.class_variable_set(:@@all, [])}
+    before(:each) {Article.class_variable_set(:@@all, [])}
+
+    describe "#articles" do
+      it "returns an array of articles belonging to the network instance" do
+
+        fox = Network.new("Fox News")
+        article1 = Article.new("tubers are falling from the sky", "Fox News")
+        article2 = Article.new("coins are falling from the sky", "Fox News")
+
+        expect(fox.articles).to eq([article1, article2])
+
+      end
+    end
+
+  end
+
 end

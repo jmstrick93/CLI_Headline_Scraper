@@ -28,6 +28,7 @@ RSpec.describe Article do
   context "custom creation" do
 
     before(:each){Article.class_variable_set(:@@all, [])}
+    before(:each){Network.class_variable_set(:@@all, [])}
 
     describe "#self.create_with_url" do
       it "creates an article with url" do
@@ -106,7 +107,7 @@ RSpec.describe Article do
       it "assigns the Article instance a Network" do
 
         cnn = Network.new("CNN")
-        
+
         article1 = Article.new("fish are falling from the sky", "CNN")
         expect(article1.network).to be(cnn)
 
