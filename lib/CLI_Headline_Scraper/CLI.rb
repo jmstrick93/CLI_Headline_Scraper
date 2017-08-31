@@ -132,7 +132,7 @@ class CLI
         end
       elsif selection.length == 2
         if Network.find_by_name(selection[0])
-          if selection[1] > selection[0].find_by_name.articles.length || selection[1] <= 0
+          if selection[1] > Network.find_by_name(selection[0]).articles.length || selection[1] <= 0
             false
           else
             true
