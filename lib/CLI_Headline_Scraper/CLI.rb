@@ -2,7 +2,7 @@
 class CLI
 
   attr_reader :time
-  attr_accessor :selected_article
+  attr_accessor :current_item
 
   def initialize
   end
@@ -11,8 +11,7 @@ class CLI
 
     self.greet
     self.display_menu #initial menu selection of what you want to see
-    selection = self.select_item
-    self.respond_to_selection(selection) #retrieves webpage by using either #retrieve_hompage or #retrieve_article.
+    self.respond_to_selection(self.select_item) #retrieves webpage by using either #retrieve_hompage or #retrieve_article.
   end
 
   def greet
@@ -69,7 +68,7 @@ class CLI
   def select_item #returns an array where arr[0] is the network name and arr[1] is the article number.
     #currently accepts all entries that do not contain a colon.  Later make it so it checks whether the network entered exists.
     selection = nil
-    until valid_selection?(selection)
+    until valid_selection?(selection) && selection_exists?(selection)
       puts "To go to a newtork homepage, just type the name of that network."
       puts "To go to a specific story, type the network name and then the article number, separated by a colon (e.g., BBC : 2)"
       #maybe later insert "back" functionality.
@@ -84,7 +83,6 @@ class CLI
           selection[1].strip!
           selection[1] = selection[1].to_i
         end
-
       else
         puts "Invalid Entry"
       end
@@ -92,6 +90,7 @@ class CLI
       if selection[0] == 'EXIT'
         self.exit_CLI
       end
+
     end
     selection
   end
@@ -102,7 +101,7 @@ class CLI
   end
 
   def respond_to_selection(selection)
-    if self.selection_exists?(selection)
+    # if self.selection_exists?(selection)
       if selection.length == 1
         the_network = Network.find_by_name(selection[0])
         the_network.go_to_homepage
@@ -112,11 +111,14 @@ class CLI
         binding.pry
         self.article_options_menu(the_article)
       end
-    end
+    # else
+    #   puts "Selection not found."
+    #   self.select_item
+    # end
 
   end
 
-  def selection_exists?(selection)
+  def selection_exists?(selection) #post-screens entries to make sure the valid entry actually refers to an existing item
     if self.valid_selection?(selection)
       if selection.length == 1
         if Network.find_by_name(selection[0])
@@ -130,6 +132,7 @@ class CLI
             false
           else
             true
+          end
         else
           false
         end
@@ -137,9 +140,6 @@ class CLI
     else
       false
     end
-  end
-
-
   end
 
   def article_options_menu(article)
