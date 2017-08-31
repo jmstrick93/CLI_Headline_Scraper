@@ -155,6 +155,8 @@ class CLI
     puts "What would you like to do? Enter a number."
     puts "1. View article in browser."
     puts "2. Scrape article text to terminal."
+    puts "3. Return to previous menu."
+    puts "Or type 'exit'."
 
     input = gets.strip.upcase
     case input
@@ -162,13 +164,15 @@ class CLI
       #open article in browser
     when "2"
       #scrape text to terminal
+    when "3"
+      self.display_menu
+      self.respond_to_selection(self.select_item)
     when "EXIT"
       self.exit_CLI
     else
       puts "Invalid Selection"
       self.article_options_menu(article)
     end
-
   end
 
 

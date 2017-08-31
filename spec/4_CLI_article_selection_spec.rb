@@ -61,11 +61,34 @@ RSpec.describe CLI do
         cli.article_options_menu(article1)
       end
 
-      it "offers the user the option to view the article in browser"
+      # it "lets the user return to previous menu" do
+      #   allow(cli).to receive(:gets).and_return("3")
+      #
+      #   expect(cli).to receive(:puts).at_least(:once)
+      #
+      #   Timecop.freeze(Time.now) do
+      #     expect($stdout).to receive(:puts).with(Time.new)
+      #     allow($stdout).to receive(:puts).at_least(:once)
+      #     cli.display_menu
+      #
+      #     expect($stdout).to receive(:puts).with("US, South Korea fly bombers over Korean Peninsula")
+      #
+      #     expect(cli).to receive(:gets).and_return("exit")
+      #
+      #     cli.article_options_menu(article1)
+      #   end
+      #
 
-      it "lets the user return to previous menu"
+      # end
 
-      it "lets the user exit"
+      it "lets the user exit" do
+
+        allow(cli).to receive(:gets).and_return("exit")
+        expect(cli).to receive(:exit)
+
+        cli.article_options_menu(article1)
+
+      end
 
     end
 
