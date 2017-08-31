@@ -85,7 +85,7 @@ class CLI
         end
 
         if !selection_exists?(selection)
-          puts "Invalid Entry"
+          puts "Selection not found"
         end
       else
         puts "Invalid Entry"
@@ -156,7 +156,19 @@ class CLI
     puts article.network_name
     puts article.authors, article.date_posted #make these!
 
-    # puts "Would you like to"
+    puts "What would you like to do?"
+    puts "1. View article in browser."
+    puts "2. Scrape article text to terminal."
+
+    input = gets.strip
+    if "1"
+      #open article in browser
+    elsif "2"
+      #scrape text to terminal
+    else
+      "Invalid Selection"
+      self.article_options_menu(article)
+    end
 
   end
 
@@ -170,26 +182,3 @@ class CLI
   end
 
 end
-#
-#
-#     case selection[0]
-#
-#     when networks.all[0]
-#       if selection.length > 1
-#         case selection[1]
-#         when "1"
-#           #load article 1
-#         when "2"
-#           #load article 2
-#         when "3"
-#           #load article 3
-#         end
-#       else
-#         #load BBC homepage
-#       end
-#
-#
-#
-#
-#
-#
