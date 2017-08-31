@@ -102,27 +102,43 @@ class CLI
   end
 
   def respond_to_selection(selection)
-
-    if selection.length == 1
-      the_network = Network.find_by_name(selection[0])
-      the_network.go_to_homepage
-    elsif selection.length == 2
-      the_network = Network.find_by_name(selection[0])
-      the_article = the_network.articles[selection[1]-1]
-      binding.pry
-      self.article_options_menu(the_article)
+    if self.selection_exists?(selection)
+      if selection.length == 1
+        the_network = Network.find_by_name(selection[0])
+        the_network.go_to_homepage
+      elsif selection.length == 2
+        the_network = Network.find_by_name(selection[0])
+        the_article = the_network.articles[selection[1]-1]
+        binding.pry
+        self.article_options_menu(the_article)
+      end
     end
 
   end
 
   def selection_exists?(selection)
     if self.valid_selection?(selection)
-      if selection.lenth == 1
-          if Network.find_by_name(selection[0])
-            true
-          else 
+      if selection.length == 1
+        if Network.find_by_name(selection[0])
+          true
+        else
+          false
+        end
+      elsif selection.length == 2
+        if Network.find_by_name(selection[0])
+          if selection[1] > selection[0].find_by_name.articles.length || selection[1] <= 0
             false
-          end
+          else
+            true
+        else
+          false
+        end
+      end
+    else
+      false
+    end
+  end
+
 
   end
 
