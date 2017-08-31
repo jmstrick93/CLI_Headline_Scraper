@@ -7,14 +7,17 @@ class CLI
   end
 
   def call
-    puts "Welcome to Headline Scraper"
-    puts "Please select which of the following articles you would like to view:"
 
-    display_menu #initial menu selection of what you want to see
-    select_item
-    retrieve_item #retrieves webpage by using either #retrieve_hompage or #retrieve_article.
+    self.greet
+    self.display_menu #initial menu selection of what you want to see
+    selection = self.select_item
+    self.respond_to_selection(selection) #retrieves webpage by using either #retrieve_hompage or #retrieve_article.
   end
 
+  def greet
+    puts "Welcome to Headline Scraper"
+    puts "Please select which of the following articles you would like to view:"
+  end
 
   def display_menu
     self.class.display_time
@@ -100,10 +103,9 @@ class CLI
 
   def respond_to_selection(selection)
 
+    the_network = Network.find_by_name(selection[0])
+    the_network.go_to_homepage
 
-  end
-
-  def go_to_homepage
   end
 
   def retrieve_article

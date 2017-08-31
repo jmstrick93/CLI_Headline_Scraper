@@ -20,15 +20,9 @@ RSpec.describe CLI do
 
         article3 = Article.create_with_url("Texas Immigration Bill temporarily blocked", "CNN", "http://www.cnn.com/2017/08/30/politics/federal-judge-temporarily-blocks-sb4/index.html")
 
-        allow(cli).to receive(:gets).and_return("CNN")
+        expect(Launchy).to receive(:open).with("http://www.cnn.com/")
 
-        expect(Launchy).to receive(:open).with("www.cnn.com")
-
-
-
-
-
-
+        cli.respond_to_selection(["CNN"])
 
       end
 

@@ -37,4 +37,10 @@ class Network
   end
 
 
+  def go_to_homepage
+    Launchy.open(self.url)
+  end
+
+
+
 end

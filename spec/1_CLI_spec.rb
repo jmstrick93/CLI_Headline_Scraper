@@ -9,7 +9,7 @@ RSpec.describe CLI do
   end
 
 
-  describe '#call' do
+  describe '#greet' do #call will be the LAST thing tested
     context "When first called:" do
       it "Greets the user and asks them to select from a list of options." do
         allow(cli).to receive(:gets).and_return("exit")
@@ -17,16 +17,12 @@ RSpec.describe CLI do
 
         expect($stdout).to receive(:puts).with("Welcome to Headline Scraper")
         expect($stdout).to receive(:puts).with("Please select which of the following articles you would like to view:")
-        expect($stdout).to receive(:puts).at_least(:once)
 
-        cli.call
+        cli.greet
       end
     end
-    # context "When entry is invalid or nonsensical:" do
-    #   it ""
-    # end
-  end
 
+  end
 
   describe '#exit_CLI' do
     it "says goodbye" do
