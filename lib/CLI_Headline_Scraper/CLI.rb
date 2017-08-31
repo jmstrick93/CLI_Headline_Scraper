@@ -106,7 +106,6 @@ class CLI
   end
 
   def respond_to_selection(selection)
-    # if self.selection_exists?(selection)
       if selection.length == 1
         the_network = Network.find_by_name(selection[0])
         the_network.go_to_homepage
@@ -115,10 +114,7 @@ class CLI
         the_article = the_network.articles[selection[1]-1]
         self.article_options_menu(the_article)
       end
-    # else
-    #   puts "Selection not found."
-    #   self.select_item
-    # end
+
 
   end
 
@@ -156,16 +152,18 @@ class CLI
     puts article.network_name
     puts article.authors, article.date_posted #make these!
 
-    puts "What would you like to do?"
+    puts "What would you like to do? Enter a number."
     puts "1. View article in browser."
     puts "2. Scrape article text to terminal."
 
-    input = gets.strip
+    input = gets.strip.upcase
     case input
     when "1"
       #open article in browser
     when "2"
       #scrape text to terminal
+    when "EXIT"
+      self.exit_CLI
     else
       puts "Invalid Selection"
       self.article_options_menu(article)
