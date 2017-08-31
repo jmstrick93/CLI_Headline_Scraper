@@ -75,13 +75,17 @@ class CLI
       puts "To exit at any time, type 'exit'."
 
       selection = gets.strip
-      selection = selection.split(":") if selection != nil
+      selection = selection.split(":") if selection != nil #turns the entered data into an array so ti can be processed
       if valid_selection?(selection)
         selection[0].strip!
         selection[0] = selection[0].upcase
         if selection.length == 2
           selection[1].strip!
           selection[1] = selection[1].to_i
+        end
+
+        if !selection_exists?(selection)
+          puts "Invalid Entry"
         end
       else
         puts "Invalid Entry"
