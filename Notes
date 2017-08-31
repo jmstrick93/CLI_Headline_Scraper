@@ -92,10 +92,6 @@ msnbc = Network.create_with_url("MSNBC","www.msnbc.com")
 
 cli = CLI.new
 
-
-
-
-
 cnn = Network.create_with_url("CNN","http://www.cnn.com/")
 article1 = Article.create_with_url("US, South Korea fly bombers over Korean Peninsula", "CNN", "http://www.cnn.com/2017/08/31/politics/us-bombers-korean-peninsula/index.html")
 article2 = Article.create_with_url("Clean water runs out in Beaumont, Texas", "CNN", "http://www.cnn.com/2017/08/31/us/harvey-houston-texas-flood/index.html")

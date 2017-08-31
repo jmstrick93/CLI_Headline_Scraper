@@ -11,7 +11,8 @@ class CLI
 
     self.greet
     self.display_menu #initial menu selection of what you want to see
-    self.respond_to_selection(self.select_item) #retrieves webpage by using either #retrieve_hompage or #retrieve_article.
+    self.respond_to_selection(self.select_item)
+    
   end
 
   def greet
@@ -112,7 +113,6 @@ class CLI
       elsif selection.length == 2
         the_network = Network.find_by_name(selection[0])
         the_article = the_network.articles[selection[1]-1]
-        binding.pry
         self.article_options_menu(the_article)
       end
     # else
@@ -167,7 +167,7 @@ class CLI
     when "2"
       #scrape text to terminal
     else
-      "Invalid Selection"
+      puts "Invalid Selection"
       self.article_options_menu(article)
     end
 

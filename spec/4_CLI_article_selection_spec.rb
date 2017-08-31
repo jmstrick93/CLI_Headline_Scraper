@@ -25,7 +25,15 @@ RSpec.describe CLI do
 
       end
 
-      it 'selects the right network/article combo'
+      it 'selects the right network/article combo' do
+
+        allow(cli).to receive(:gets).and_return("CNN:2")
+        expect($stdout).to receive(:puts).with("Clean water runs out in Beaumont, Texas")
+        expect($stdout).to receive(:puts).with("CNN")
+        allow($stdout).to receive(:puts).at_least(:once)
+
+        cli.respond_to_selection(self.select_item)
+      end
 
       it 'does not select something that isnt there'
 
