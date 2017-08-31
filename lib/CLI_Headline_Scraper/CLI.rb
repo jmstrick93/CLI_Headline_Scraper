@@ -161,9 +161,10 @@ class CLI
     puts "2. Scrape article text to terminal."
 
     input = gets.strip
-    if "1"
+    case input
+    when "1"
       #open article in browser
-    elsif "2"
+    when "2"
       #scrape text to terminal
     else
       "Invalid Selection"
