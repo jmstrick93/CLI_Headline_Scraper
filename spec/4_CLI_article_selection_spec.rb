@@ -7,7 +7,7 @@ RSpec.describe CLI do
   let!(:cli){CLI.new}
 
   context 'When selecting only a network' do
-    describe '#go_to_homepage' do
+    describe '#respond_to_selection' do
 
       before(:each){Article.class_variable_set(:@@all, [])}
       before(:each){Network.class_variable_set(:@@all, [])}

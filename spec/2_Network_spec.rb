@@ -125,4 +125,18 @@ RSpec.describe Network do
 
   end
 
+  context "when opening its homepage" do
+    describe "#go_to_homepage" do
+      it "uses Launchy to open the homepage of the Network instance it is called on" do
+
+        cnn = Network.create_with_url("CNN","http://www.cnn.com/")
+
+        expect(Launchy).to receive(:open).with("http://www.cnn.com/")
+
+        cnn.go_to_homepage
+
+      end
+    end
+    
+  end
 end
