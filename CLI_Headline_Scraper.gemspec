@@ -37,4 +37,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "timecop", "~>0.9"
 
   spec.add_dependency "require_all", "~> 1.4"
+  spec.add_dependency "launchy", "~> 2.4"
 end

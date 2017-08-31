@@ -1,10 +1,34 @@
-#will create tests with actuak Articles and Networks objects to assist me with making sure the CLI can interact properly with them.
+#will create tests with actual Articles and Networks objects to assist me with making sure the CLI can interact properly with them. Ones with real headlines etc, but non-scraped
 
-Rspec.describe CLI do
+require 'spec_helper'
+
+RSpec.describe CLI do
+
+  let!(:cli){CLI.new}
 
   context 'When selecting only a network' do
     describe '#go_to_homepage' do
+
+      before(:each){Article.class_variable_set(:@@all, [])}
+      before(:each){Network.class_variable_set(:@@all, [])}
+
+
       it 'opens the network homepage in-browser' do
+        cnn = Network.create_with_url("CNN","http://www.cnn.com/")
+        article1 = Article.create_with_url("US, South Korea fly bombers over Korean Peninsula", "CNN", "http://www.cnn.com/2017/08/31/politics/us-bombers-korean-peninsula/index.html")
+        article2 = Article.create_with_url("Clean water runs out in Beaumont, Texas", "CNN", "http://www.cnn.com/2017/08/31/us/harvey-houston-texas-flood/index.html")
+
+        article3 = Article.create_with_url("Texas Immigration Bill temporarily blocked", "CNN", "http://www.cnn.com/2017/08/30/politics/federal-judge-temporarily-blocks-sb4/index.html")
+
+        allow(cli).to receive(:gets).and_return("CNN")
+
+        expect(Launchy).to receive(:open).with("www.cnn.com")
+
+
+
+
+
+
 
       end
 
@@ -13,17 +37,14 @@ Rspec.describe CLI do
 
   context 'When selecting an article' do
     describe '#article_options' do
-      it "offers the user the choice to retrieve article text to display inline" do #if too much, display article metadata instead
+      it "offers the user the choice to retrieve article text to display inline"  #if too much, display article metadata instead
 
-      end
 
-      it "offers the user the option to view the article in browser" do
 
-      end
+      it "offers the user the option to view the article in browser"
 
-      it "lets the user return to previous menu" do
+      it "lets the user return to previous menu"
 
-      end
 
       it "lets the user exit"
 

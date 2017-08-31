@@ -98,10 +98,12 @@ class CLI
     exit
   end
 
-  def retrieve_item
+  def respond_to_selection(selection)
+
+
   end
 
-  def retrieve_homepage
+  def go_to_homepage
   end
 
   def retrieve_article
