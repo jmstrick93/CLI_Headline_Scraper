@@ -2,6 +2,7 @@
 class CLI
 
   attr_reader :time
+  attr_accessor :article
 
   def initialize
   end
@@ -62,7 +63,6 @@ class CLI
     else
       true
     end
-
   end
 
 
@@ -103,10 +103,25 @@ class CLI
 
   def respond_to_selection(selection)
 
-    the_network = Network.find_by_name(selection[0])
-    the_network.go_to_homepage
+    if selection.length == 1
+      the_network = Network.find_by_name(selection[0])
+      the_network.go_to_homepage
+    elsif selection.length == 2
+
 
   end
+
+  def article_options_menu(article)
+    #takes article object as an argument
+    #automatically displays article headline, network name, and article metadata (i.e. author, date & time posted, number of comments, tags etc.)
+
+    #gives the option for the user to either go to the article in browser or scrape the contents of the article
+
+    puts article.headline
+    puts article.network_name
+    puts article.authors, article.date_posted
+
+
 
   def retrieve_article
   end

@@ -30,7 +30,7 @@ RSpec.describe CLI do
   end
 
   context 'When selecting an article' do
-    describe '#article_options' do
+    describe '#article_options_menu' do
       it "offers the user the choice to retrieve article text to display inline"  #if too much, display article metadata instead
 
 
@@ -38,7 +38,6 @@ RSpec.describe CLI do
       it "offers the user the option to view the article in browser"
 
       it "lets the user return to previous menu"
-
 
       it "lets the user exit"
 
