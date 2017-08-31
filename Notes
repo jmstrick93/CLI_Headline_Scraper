@@ -74,10 +74,11 @@ HEADLINE OBJECTS will have @name, @text and @url variables
 
 
 
+cli = CLI.new
 
-cnn = Network.new("CNN")
-fox = Network.new("Fox News")
-msnbc = Network.new("MSNBC")
+cnn = Network.create_with_url("CNN", "www.cnn.com")
+fox = Network.create_with_url("Fox News", "www.foxnews.com")
+msnbc = Network.create_with_url("MSNBC","www.msnbc.com")
 
 fish = Article.new("fish are falling from the sky", "CNN")
 cows = Article.new("cows are falling from the sky", "CNN")

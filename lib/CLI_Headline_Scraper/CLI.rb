@@ -2,7 +2,7 @@
 class CLI
 
   attr_reader :time
-  attr_accessor :article
+  attr_accessor :selected_article
 
   def initialize
   end
@@ -107,7 +107,11 @@ class CLI
       the_network = Network.find_by_name(selection[0])
       the_network.go_to_homepage
     elsif selection.length == 2
-
+      the_network = Network.find_by_name(selection[0])
+      the_article = the_network.articles[selection[1]-1]
+      binding.pry
+      self.article_options_menu(the_article)
+    end
 
   end
 
@@ -120,6 +124,7 @@ class CLI
     puts article.headline
     puts article.network_name
     puts article.authors, article.date_posted #make these!
+  end
 
 
 
@@ -131,7 +136,6 @@ class CLI
   end
 
 end
-
 #
 #
 #     case selection[0]
