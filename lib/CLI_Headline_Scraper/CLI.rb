@@ -35,7 +35,7 @@ class CLI
     end
   end
 
-  def valid_selection?(selection)
+  def valid_selection?(selection) #pre-screens nonsensical entries. DOES NOT check whether the item entered exists
     if selection == nil #
       false
     elsif selection.length == 0
@@ -112,6 +112,17 @@ class CLI
       binding.pry
       self.article_options_menu(the_article)
     end
+
+  end
+
+  def selection_exists?(selection)
+    if self.valid_selection?(selection)
+      if selection.lenth == 1
+          if Network.find_by_name(selection[0])
+            true
+          else 
+            false
+          end
 
   end
 
