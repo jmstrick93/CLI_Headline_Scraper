@@ -119,7 +119,7 @@ class CLI
 
     puts article.headline
     puts article.network_name
-    puts article.authors, article.date_posted
+    puts article.authors, article.date_posted #make these!
 
 
 
