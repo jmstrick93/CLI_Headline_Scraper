@@ -12,7 +12,7 @@ class CLI
     self.greet
     self.display_menu #initial menu selection of what you want to see
     self.respond_to_selection(self.select_item)
-    
+
   end
 
   def greet
@@ -69,7 +69,7 @@ class CLI
   def select_item #returns an array where arr[0] is the network name and arr[1] is the article number.
     #currently accepts all entries that do not contain a colon.  Later make it so it checks whether the network entered exists.
     selection = nil
-    until valid_selection?(selection) && selection_exists?(selection)
+    until valid_selection?(selection) || selection == 'EXIT'
       puts "To go to a newtork homepage, just type the name of that network."
       puts "To go to a specific story, type the network name and then the article number, separated by a colon (e.g., BBC : 2)"
       #maybe later insert "back" functionality.
@@ -80,7 +80,11 @@ class CLI
       if valid_selection?(selection)
         selection[0].strip!
         selection[0] = selection[0].upcase
-        if selection.length == 2
+        if selection.length == 1
+          if selection[0] == 'EXIT'
+            self.exit_CLI
+          end
+        elsif selection.length == 2
           selection[1].strip!
           selection[1] = selection[1].to_i
         end
@@ -90,10 +94,6 @@ class CLI
         end
       else
         puts "Invalid Entry"
-      end
-
-      if selection[0] == 'EXIT'
-        self.exit_CLI
       end
 
     end

@@ -2,7 +2,17 @@ require 'spec_helper'
 
 RSpec.describe CLI do
 
+  # before(:each) {Network.class_variable_set(:@@all, [])}
+  # before(:each) {Article.class_variable_set(:@@all, [])}
+
   let!(:cli){CLI.new}
+  # let!(:cnn){Network.create_with_url("CNN","http://www.cnn.com/")}
+  # let!(:bbc){Network.new("BBC")}
+  # let!(:article1){Article.create_with_url("US, South Korea fly bombers over Korean Peninsula", "CNN", "http://www.cnn.com/2017/08/31/politics/us-bombers-korean-peninsula/index.html")}
+  # let!(:article2){Article.create_with_url("Clean water runs out in Beaumont, Texas", "CNN", "http://www.cnn.com/2017/08/31/us/harvey-houston-texas-flood/index.html")}
+  #
+  # let!(:article3){ Article.create_with_url("Texas Immigration Bill temporarily blocked", "CNN", "http://www.cnn.com/2017/08/30/politics/federal-judge-temporarily-blocks-sb4/index.html")}
+
 
   it "can be initialized" do
     expect(cli).to be_an_instance_of(CLI)
@@ -89,6 +99,7 @@ RSpec.describe CLI do
         allow(cli).to receive(:exit)
         allow(cli).to receive(:gets).and_return("exit")
         allow($stdout).to receive(:puts).with("Goodbye!")
+        allow($stdout).to receive(:puts).with("Selection not found")
 
         expect($stdout).to receive(:puts).with("To go to a newtork homepage, just type the name of that network.")
         expect($stdout).to receive(:puts).with("To go to a specific story, type the network name and then the article number, separated by a colon (e.g., BBC : 2)")
@@ -100,20 +111,17 @@ RSpec.describe CLI do
 
 
     context "When given an invalid or nonsensical entry:" do
-    it "puts 'Invalid Entry' when given a blank entry." do
+      it "puts 'Invalid Entry' when given a blank entry." do
 
-      allow($stdout).to receive(:puts).with("To go to a newtork homepage, just type the name of that network.")
-      allow($stdout).to receive(:puts).with("To go to a specific story, type the network name and then the article number, separated by a colon (e.g., BBC : 2)")
-      allow($stdout).to receive(:puts).with("To exit at any time, type 'exit'.")
+        allow($stdout).to receive(:puts).at_least(:once)
 
-      expect(cli).to receive(:gets).and_return("")
-      expect($stdout).to receive(:puts).with("Invalid Entry")
-      expect($stdout).to receive(:puts).at_least(:once)
-      allow(cli).to receive(:gets).and_return('exit')
-      allow(cli).to receive(:exit)
+        expect(cli).to receive(:gets).and_return("")
+        expect($stdout).to receive(:puts).with("Invalid Entry")
+        expect(cli).to receive(:gets).and_return('exit')
+        expect(cli).to receive(:exit)
 
-      cli.select_item
-    end
+        cli.select_item
+      end
 
 
     it "puts 'Invalid Entry' when given an entry with more than 2 items" do
@@ -147,7 +155,7 @@ RSpec.describe CLI do
       end
 
 
-      it "puts 'Invalid Entry' when the number input is greater than three" do
+      it "puts 'Invalid Entry' when the number input is greater than three" do #this one works on its own!
 
         allow($stdout).to receive(:puts).with("To go to a newtork homepage, just type the name of that network.")
         allow($stdout).to receive(:puts).with("To go to a specific story, type the network name and then the article number, separated by a colon (e.g., BBC : 2)")
@@ -188,7 +196,6 @@ RSpec.describe CLI do
 
       cli.select_item
     end
-    end
+   end
   end
-
 end
