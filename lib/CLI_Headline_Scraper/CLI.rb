@@ -124,6 +124,9 @@ class CLI
     puts article.headline
     puts article.network_name
     puts article.authors, article.date_posted #make these!
+
+    # puts "Would you like to"
+
   end
 
 
