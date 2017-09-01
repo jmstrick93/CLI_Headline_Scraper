@@ -161,7 +161,7 @@ class CLI
     input = gets.strip.upcase
     case input
     when "1"
-      #open article in browser
+      Launchy.open(article.url)
     when "2"
       #scrape text to terminal
     when "3"

@@ -38,4 +38,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "require_all", "~> 1.4"
   spec.add_dependency "launchy", "~> 2.4"
+  spec.add_dependency "nokogiri", "~> 1.8"
 end

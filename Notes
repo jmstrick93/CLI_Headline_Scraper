@@ -1,3 +1,13 @@
+Scraper class notes
+
+EVERY HOMEPAGE IS DIFFERENT
+MAKE A SCRAPER MODULE -- and then individual scrapers for each network?  That all take from the module but have unique characteristics?
+
+
+OR have different methods for scraping different things on Scraper!
+
+
+
 Hello, welcome to Headline Scaper!
 Which headlines would you like to view?
 

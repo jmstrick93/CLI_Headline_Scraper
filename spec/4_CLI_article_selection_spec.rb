@@ -61,6 +61,8 @@ RSpec.describe CLI do
         cli.article_options_menu(article1)
       end
 
+      #the below was commented out because it kept hitting an infinite loop.  REVISIT WITH TUTOR
+
       # it "lets the user return to previous menu" do
       #   allow(cli).to receive(:gets).and_return("3")
       #
@@ -80,6 +82,8 @@ RSpec.describe CLI do
       #
 
       # end
+
+
 
       it "lets the user exit" do
 
