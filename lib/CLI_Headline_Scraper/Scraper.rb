@@ -17,6 +17,30 @@ class Scraper
     #e.g. [["headline", "url"], [headline, url], [headline, url]]
   end
 
+
+
+  def self.msnbc_homepage
+    url = "http://www.msnbc.com"
+    homepage = self.get_page(url)
+    msnbc = Network.create_with_url("MSNBC", url)
+    msnbc.home_html = homepage
+    binding.pry
+    self.scrape_msnbc_articles
+  end
+
+  def self.scrape_msnbc_articles
+
+    #<span class="featured-slider-menu__item__link__title" data-dy-title="">Kushner divestment claims draw scrutiny – again</span>
+
+    html = Network.find_by_name("MSNBC").home_html
+
+    leader = html.css("a[data-fragment = '#homepage-item-1'] span.featured-slider-menu__item__link__title").text
+
+
+
+    binding.pry
+  end
+
   def self.scrape_cnn_articles
 
     #returns an array of 3 articles with their headlines and homepages
