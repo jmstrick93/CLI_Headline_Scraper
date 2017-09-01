@@ -1,6 +1,6 @@
 class Network
 
-  attr_accessor :articles, :url
+  attr_accessor :articles, :url, :home_html
   attr_reader :name
 
   @@all = []

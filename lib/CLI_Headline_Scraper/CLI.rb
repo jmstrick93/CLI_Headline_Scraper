@@ -176,7 +176,6 @@ class CLI
   end
 
 
-
   def retrieve_article
   end
 
