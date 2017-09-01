@@ -10,15 +10,21 @@ class Scraper
     homepage = self.get_page(url)
     cnn = Network.create_with_url("CNN", url)
     cnn.home_html = homepage
+    binding.pry
+    self.scrape_cnn_articles
+
     #code retrieving top 3 articles of day in 2-layer nested array.
     #e.g. [["headline", "url"], [headline, url], [headline, url]]
   end
 
-  def self.scrape_articles
+  def self.scrape_cnn_articles
 
     #returns an array of 3 articles with their headlines and homepages
 
     #leader_headline: <h2 class="banner-text screaming-banner-text banner-text-size--char-44" data-analytics="_list-hierarchical-xs_article_">Hurricane Irma could be the next disaster</h2>
+    html = Network.find_by_name("CNN").home_html
+    binding.pry
+    leader = html.css(".banner-text").text
 
     # secondary headline: <div class="cd__content"><h3 class="cd__headline" data-analytics="Other top stories_list-hierarchical-xs_article_"><a href="/2017/08/31/politics/sheriff-david-clarke-resignation/index.html"><span class="cd__headline-text"><strong>Milwaukee sheriff, whose book Trump just promoted<strong></strong>, resigns</strong></span><span class="cd__headline-icon"></span></a></h3></div>
 
