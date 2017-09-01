@@ -34,7 +34,7 @@ class Scraper
 
     html = Network.find_by_name("MSNBC").home_html
 
-    leader = html.css("a[data-fragment = '#homepage-item-1'] span.featured-slider-menu__item__link__title").text
+    leader = [html.css("a[data-fragment = '#homepage-item-1'] span.featured-slider-menu__item__link__title").text, html.css("a[data-fragment = '#homepage-item-1']").attribute("href").value]
 
 
 
