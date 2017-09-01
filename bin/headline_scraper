@@ -8,5 +8,5 @@ require './lib/environment'
 ###end testing conditions###
 
 Scraper.msnbc_homepage
-
+Scraper.fox_homepage
 CLI.new.call

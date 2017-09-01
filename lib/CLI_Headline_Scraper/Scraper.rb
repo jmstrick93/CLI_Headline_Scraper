@@ -5,19 +5,36 @@ class Scraper
   end
 
 
-  def self.cnn_homepage
-    url = "http://www.cnn.com"
-    homepage = self.get_page(url)
-    cnn = Network.create_with_url("CNN", url)
-    cnn.home_html = homepage
-    binding.pry
-    self.scrape_cnn_articles
+#<<<<<<<<<<<<<<<<<<FOX SCRAPING METHODS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-    #code retrieving top 3 articles of day in 2-layer nested array.
-    #e.g. [["headline", "url"], [headline, url], [headline, url]]
-  end
+def self.fox_homepage
+  url = "http://www.foxnews.com"
+  homepage = self.get_page(url)
+  fox = Network.create_with_url("FOX NEWS", url)
+  fox.home_html = homepage
+  self.scrape_fox_articles.each{|article| article = Article.create_with_url(article[0],"FOX NEWS", article[1])}
+
+end
+
+def self.scrape_fox_articles
+
+  html = Network.find_by_name("FOX NEWS").home_html
+
+  leader = [html.css("div.primary h1 a").text, html.css("div.primary h1 a").attribute("href").value]
+  second = [html.css("div.top-stories a h3").first.text, html.css("div.top-stories li").first.css("a").attribute("href").value]
+  third = [html.css("div.top-stories a h3")[1].text, html.css("div.top-stories li[data-vr-contentbox = ''] a")[4].attribute("href").value
+]
+
+  binding.pry
 
 
+  articles = [leader, second, third]
+
+end
+
+
+
+#<<<<<<<<<<<<<<<MSNBC SCRAPING METHODS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   def self.msnbc_homepage
     url = "http://www.msnbc.com"
@@ -42,6 +59,8 @@ class Scraper
   end
 
   def self.check_msnbc_urls(articles)
+     #checks for and corrects common issue where MSNBC uses partial urls for internal links
+
     articles.each do |article|
       if !article[1].include?("www")
         article[1] = "www.msnbc.com" + article[1]
@@ -49,6 +68,20 @@ class Scraper
     end
   end
 
+
+#<<<<<<<<<<<<<<<<<<< CNN SCRAPING METHODS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  def self.cnn_homepage
+    url = "http://www.cnn.com"
+    homepage = self.get_page(url)
+    cnn = Network.create_with_url("CNN", url)
+    cnn.home_html = homepage
+    binding.pry
+    self.scrape_cnn_articles
+
+    #code retrieving top 3 articles of day in 2-layer nested array.
+    #e.g. [["headline", "url"], [headline, url], [headline, url]]
+  end
 
   def self.scrape_cnn_articles
 
