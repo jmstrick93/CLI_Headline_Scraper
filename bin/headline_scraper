@@ -7,6 +7,6 @@ require './lib/environment'
 
 ###end testing conditions###
 
-
+Scraper.msnbc_homepage
 
 CLI.new.call

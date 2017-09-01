@@ -24,22 +24,31 @@ class Scraper
     homepage = self.get_page(url)
     msnbc = Network.create_with_url("MSNBC", url)
     msnbc.home_html = homepage
-    binding.pry
-    self.scrape_msnbc_articles
+    self.scrape_msnbc_articles.each{|article| article = Article.create_with_url(article[0],"MSNBC", article[1])}
+
   end
 
   def self.scrape_msnbc_articles
 
-    #<span class="featured-slider-menu__item__link__title" data-dy-title="">Kushner divestment claims draw scrutiny – again</span>
-
     html = Network.find_by_name("MSNBC").home_html
-
     leader = [html.css("a[data-fragment = '#homepage-item-1'] span.featured-slider-menu__item__link__title").text, html.css("a[data-fragment = '#homepage-item-1']").attribute("href").value]
+    second = [html.css("a[data-fragment = '#homepage-item-2'] span.featured-slider-menu__item__link__title").text, html.css("a[data-fragment = '#homepage-item-2']").attribute("href").value]
+    third = [html.css("a[data-fragment = '#homepage-item-3'] span.featured-slider-menu__item__link__title").text, html.css("a[data-fragment = '#homepage-item-3']").attribute("href").value]
 
+    articles = [leader, second, third]
+    self.check_msnbc_urls(articles)
 
-
-    binding.pry
+    articles
   end
+
+  def self.check_msnbc_urls(articles)
+    articles.each do |article|
+      if !article[1].include?("www")
+        article[1] = "www.msnbc.com" + article[1]
+      end
+    end
+  end
+
 
   def self.scrape_cnn_articles
 
