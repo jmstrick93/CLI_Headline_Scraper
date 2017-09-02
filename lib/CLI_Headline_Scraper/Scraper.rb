@@ -4,6 +4,45 @@ class Scraper
     doc = Nokogiri::HTML(open(url))
   end
 
+#<<<<<<<<<<<<<<<<<<REUTERS SCRAPING METHODS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+def self.reuters_homepage
+
+  url = "https://www.reuters.com"
+  homepage = self.get_page(url)
+  reuters = Network.create_with_url("REUTERS", url)
+  reuters.home_html = homepage
+  self.scrape_reuters_articles.each{|article| article = Article.create_with_url(article[0],"REUTERS", article[1])}
+
+end
+
+
+def self.scrape_reuters_articles
+
+  html = Network.find_by_name("REUTERS").home_html
+  leader = [html.css("section.right-now-module h2.story-title a").text, html.css("section.right-now-module h2.story-title a").attribute("href").value]
+  second = [html.css("section#hp-top-news-top article.story div.story-content a h3.story-title").first.text.strip, html.css("section#hp-top-news-top article.story div.story-content a").first.attribute("href").value]
+  third = [html.css("section#hp-top-news-top article.story div.story-content a h3.story-title")[1].text.strip, html.css("section#hp-top-news-top article.story div.story-content a")[1].attribute("href").value]
+  binding.pry
+  articles = [leader, second, third]
+
+  self.check_reuters_urls(articles)
+
+  articles
+
+end
+
+
+def self.check_reuters_urls(articles)
+   #checks for and corrects common issue where MSNBC uses partial urls for internal links
+
+  articles.each do |article|
+    if !article[1].include?("www")
+      article[1] = "www.reuters.com" + article[1]
+    end
+  end
+end
+
 
 #<<<<<<<<<<<<<<<<<<FOX SCRAPING METHODS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -22,16 +61,12 @@ def self.scrape_fox_articles
 
   leader = [html.css("div.primary h1 a").text, html.css("div.primary h1 a").attribute("href").value]
   second = [html.css("div.top-stories a h3").first.text, html.css("div.top-stories li").first.css("a").attribute("href").value]
-  third = [html.css("div.top-stories a h3")[1].text, html.css("div.top-stories li[data-vr-contentbox = ''] a")[4].attribute("href").value
-]
 
-  binding.pry
-
+  third = [html.css("div.top-stories a h3")[1].text, html.css("div.top-stories li[data-vr-contentbox = ''] a")[4].attribute("href").value]
 
   articles = [leader, second, third]
 
 end
-
 
 
 #<<<<<<<<<<<<<<<MSNBC SCRAPING METHODS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

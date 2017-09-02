@@ -9,4 +9,6 @@ require './lib/environment'
 
 Scraper.msnbc_homepage
 Scraper.fox_homepage
+Scraper.reuters_homepage
+
 CLI.new.call

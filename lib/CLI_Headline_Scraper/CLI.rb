@@ -70,7 +70,7 @@ class CLI
     #currently accepts all entries that do not contain a colon.  Later make it so it checks whether the network entered exists.
     selection = nil
     until valid_selection?(selection) || selection == 'EXIT'
-      puts "To go to a newtork homepage, just type the name of that network."
+      puts "To go to a network homepage, just type the name of that network."
       puts "To go to a specific story, type the network name and then the article number, separated by a colon (e.g., BBC : 2)"
       #maybe later insert "back" functionality.
       puts "To exit at any time, type 'exit'."
