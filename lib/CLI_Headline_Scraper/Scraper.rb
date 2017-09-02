@@ -47,6 +47,10 @@ def self.reuters_article(article)
   article.html = self.get_page(article.url)
   article.summary = article.html.css("meta[name='description']").attribute("content").value
 
+  article.date = article.html.css("meta[name='REVISION_DATE']").attribute("content").value
+
+  # article.authors = article.html.css("meta[name='Author']").attribute("content").value
+
 end
 
 
@@ -79,6 +83,9 @@ end
 def self.fox_article(article)
   article.html = self.get_page(article.url)
   article.summary = article.html.css("meta[name='description']").attribute("content").value
+
+  article.date = article.html.css("meta[name='dc.date']").attribute("content").value
+
 end
 
 
@@ -111,9 +118,18 @@ end
 
     articles.each do |article|
       if !article[1].include?("www")
-        article[1] = "www.msnbc.com" + article[1]
+        article[1] = "http://www.msnbc.com" + article[1]
       end
     end
+  end
+
+  def self.msnbc_article(article)
+
+    article.html = self.get_page(article.url)
+    article.summary = article.html.css("meta[name='description']").attribute("content").value
+
+    article.date = article.html.css("meta[property='nv:date']").attribute("content").value
+
   end
 
 

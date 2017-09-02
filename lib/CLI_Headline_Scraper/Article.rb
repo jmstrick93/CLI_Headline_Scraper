@@ -1,6 +1,6 @@
 class Article
 
-  attr_accessor :network_name, :network, :headline, :url, :authors, :html, :date_posted, :number_of_comments, :summary
+  attr_accessor :network_name, :network, :headline, :url, :authors, :html, :date, :number_of_comments, :summary
 
   @@all = []
 

@@ -152,6 +152,8 @@ class CLI
       Scraper.reuters_article(article)
     when "FOX NEWS"
       Scraper.fox_article(article)
+    when "MSNBC"
+      Scraper.msnbc_article(article)
     end
   end
 
@@ -171,14 +173,16 @@ class CLI
     puts ""
     puts article.network_name
     puts article.headline
-    puts article.date_posted
+    puts article.date
+    puts ""
     puts article.summary
+    puts ""
+    puts "---------------"
     puts ""
 
     puts "What would you like to do? Enter a number."
     puts "1. View article in browser."
-    puts "2. Scrape article text to terminal."
-    puts "3. Return to previous menu."
+    puts "2. Return to previous menu."
     puts "Or type 'exit'."
 
     input = gets.strip.upcase
@@ -186,8 +190,6 @@ class CLI
     when "1"
       Launchy.open(article.url)
     when "2"
-      #scrape text to terminal
-    when "3"
       self.display_menu
       self.respond_to_selection(self.select_item)
     when "EXIT"
