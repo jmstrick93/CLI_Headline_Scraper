@@ -23,7 +23,6 @@ def self.scrape_reuters_articles
   leader = [html.css("section.right-now-module h2.story-title a").text, html.css("section.right-now-module h2.story-title a").attribute("href").value]
   second = [html.css("section#hp-top-news-top article.story div.story-content a h3.story-title").first.text.strip, html.css("section#hp-top-news-top article.story div.story-content a").first.attribute("href").value]
   third = [html.css("section#hp-top-news-top article.story div.story-content a h3.story-title")[1].text.strip, html.css("section#hp-top-news-top article.story div.story-content a")[1].attribute("href").value]
-  binding.pry
   articles = [leader, second, third]
 
   self.check_reuters_urls(articles)
@@ -38,10 +37,19 @@ def self.check_reuters_urls(articles)
 
   articles.each do |article|
     if !article[1].include?("www")
-      article[1] = "www.reuters.com" + article[1]
+      article[1] = "https://www.reuters.com" + article[1]
     end
   end
 end
+
+def self.reuters_article(article)
+
+  article.html = self.get_page(article.url)
+  article.summary = article.html.css("meta[name='description']").attribute("content").value
+
+end
+
+
 
 
 #<<<<<<<<<<<<<<<<<<FOX SCRAPING METHODS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -66,6 +74,11 @@ def self.scrape_fox_articles
 
   articles = [leader, second, third]
 
+end
+
+def self.fox_article(article)
+  article.html = self.get_page(article.url)
+  article.summary = article.html.css("meta[name='description']").attribute("content").value
 end
 
 
@@ -111,7 +124,6 @@ end
     homepage = self.get_page(url)
     cnn = Network.create_with_url("CNN", url)
     cnn.home_html = homepage
-    binding.pry
     self.scrape_cnn_articles
 
     #code retrieving top 3 articles of day in 2-layer nested array.
@@ -124,7 +136,6 @@ end
 
     #leader_headline: <h2 class="banner-text screaming-banner-text banner-text-size--char-44" data-analytics="_list-hierarchical-xs_article_">Hurricane Irma could be the next disaster</h2>
     html = Network.find_by_name("CNN").home_html
-    binding.pry
     leader = html.css(".banner-text").text
 
     # secondary headline: <div class="cd__content"><h3 class="cd__headline" data-analytics="Other top stories_list-hierarchical-xs_article_"><a href="/2017/08/31/politics/sheriff-david-clarke-resignation/index.html"><span class="cd__headline-text"><strong>Milwaukee sheriff, whose book Trump just promoted<strong></strong>, resigns</strong></span><span class="cd__headline-icon"></span></a></h3></div>
@@ -134,14 +145,8 @@ end
 
   end
 
-  def self.create_Articles_from_homepage
-    #will I need this?
-    #
-  end
-
 
   def self.cnn_article
   end
-
 
 end

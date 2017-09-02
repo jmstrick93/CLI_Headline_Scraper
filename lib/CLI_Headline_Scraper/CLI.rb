@@ -142,15 +142,38 @@ class CLI
     end
   end
 
+
+
+  def select_scrape_method(article)
+
+    case article.network_name
+
+    when "REUTERS"
+      Scraper.reuters_article(article)
+    when "FOX NEWS"
+      Scraper.fox_article(article)
+    end
+  end
+
+
+
+
+
+
   def article_options_menu(article)
     #takes article object as an argument
     #automatically displays article headline, network name, and article metadata (i.e. author, date & time posted, number of comments, tags etc.)
 
     #gives the option for the user to either go to the article in browser or scrape the contents of the article
+    self.select_scrape_method(article)
 
-    puts article.headline
+    puts "_____________________________________"
+    puts ""
     puts article.network_name
-    puts article.authors, article.date_posted #make these!
+    puts article.headline
+    puts article.date_posted
+    puts article.summary
+    puts ""
 
     puts "What would you like to do? Enter a number."
     puts "1. View article in browser."

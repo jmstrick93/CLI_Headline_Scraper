@@ -107,3 +107,11 @@ article1 = Article.create_with_url("US, South Korea fly bombers over Korean Peni
 article2 = Article.create_with_url("Clean water runs out in Beaumont, Texas", "CNN", "http://www.cnn.com/2017/08/31/us/harvey-houston-texas-flood/index.html")
 
 article3 = Article.create_with_url("Texas Immigration Bill temporarily blocked", "CNN", "http://www.cnn.com/2017/08/30/politics/federal-judge-temporarily-blocks-sb4/index.html")
+
+
+
+
+
+
+
+Article Scraping won't happen until article is actually picked?  Or should it happen at the beginning when the program first loads?  That might take a while and load a lot of data that will not be viewed.

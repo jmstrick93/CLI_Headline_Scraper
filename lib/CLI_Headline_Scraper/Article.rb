@@ -1,6 +1,6 @@
 class Article
 
-  attr_accessor :network_name, :network, :headline, :url, :authors, :date_posted, :number_of_comments
+  attr_accessor :network_name, :network, :headline, :url, :authors, :html, :date_posted, :number_of_comments, :summary
 
   @@all = []
 
@@ -30,6 +30,19 @@ class Article
 
   def self.find_by_network_name(network_name)
     self.all.select{|item| item.network_name == network_name}
+  end
+
+
+  def populate_metadata()
+    #retreives metadata of reuters article -- right now just time/date.
+    #1. Scrapes data from the selected article's url.(separate)
+    #3. Uses that data to populate article.authors, article.date_posted, article.text.
+
+    Scraper.reuters_article(self)
+
+
+    article = Article.find_by_headline(headline)
+
   end
 
 end
