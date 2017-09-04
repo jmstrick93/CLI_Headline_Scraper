@@ -77,7 +77,6 @@ class CLI
       selection = gets.strip
       selection = selection.split(":") if selection != nil #turns the entered data into an array so ti can be processed
       if valid_selection?(selection)
-        binding.pry
         selection[0].strip!
         selection[0] = selection[0].upcase
         if selection.length == 1
