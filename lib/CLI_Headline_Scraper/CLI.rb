@@ -69,15 +69,15 @@ class CLI
   def select_item #returns an array where arr[0] is the network name and arr[1] is the article number.
     #currently accepts all entries that do not contain a colon.  Later make it so it checks whether the network entered exists.
     selection = nil
-    until valid_selection?(selection) || selection == 'EXIT'
+    until selection_exists?(selection) || selection == 'EXIT'
       puts "To go to a network homepage, just type the name of that network."
       puts "To go to a specific story, type the network name and then the article number, separated by a colon (e.g., BBC : 2)"
-      #maybe later insert "back" functionality.
       puts "To exit at any time, type 'exit'."
 
       selection = gets.strip
       selection = selection.split(":") if selection != nil #turns the entered data into an array so ti can be processed
       if valid_selection?(selection)
+        binding.pry
         selection[0].strip!
         selection[0] = selection[0].upcase
         if selection.length == 1
