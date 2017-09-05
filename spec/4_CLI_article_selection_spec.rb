@@ -47,44 +47,6 @@ RSpec.describe CLI do
 
   context 'When selecting an article' do
     describe '#article_options_menu' do
-      it "offers the user the choice to retrieve article text or to display inline" do  #if too much, display article metadata instead
-
-        allow($stdout).to receive(:puts).at_least(:once)
-
-        expect($stdout).to receive(:puts).with("What would you like to do? Enter a number.")
-        expect($stdout).to receive(:puts).with("1. View article in browser.")
-        expect($stdout).to receive(:puts).with("2. Scrape article text to terminal.")
-
-        allow(cli).to receive(:gets).and_return("exit")
-        allow(cli).to receive(:exit)
-
-        cli.article_options_menu(article1)
-      end
-
-      #the below was commented out because it kept hitting an infinite loop.  REVISIT WITH TUTOR
-
-      # it "lets the user return to previous menu" do
-      #   allow(cli).to receive(:gets).and_return("3")
-      #
-      #   expect(cli).to receive(:puts).at_least(:once)
-      #
-      #   Timecop.freeze(Time.now) do
-      #     expect($stdout).to receive(:puts).with(Time.new)
-      #     allow($stdout).to receive(:puts).at_least(:once)
-      #     cli.display_menu
-      #
-      #     expect($stdout).to receive(:puts).with("US, South Korea fly bombers over Korean Peninsula")
-      #
-      #     expect(cli).to receive(:gets).and_return("exit")
-      #
-      #     cli.article_options_menu(article1)
-      #   end
-      #
-
-      # end
-
-
-
       it "lets the user exit" do
 
         allow(cli).to receive(:gets).and_return("exit")
