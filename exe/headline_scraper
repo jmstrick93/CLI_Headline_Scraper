@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require 'require_all'
-require './lib/environment'
+require_relative '../lib/environment'
 
 ###testing conditions###
 
