@@ -128,7 +128,11 @@ end
     article.html = self.get_page(article.url)
     article.summary = article.html.css("meta[name='description']").attribute("content").value
 
-    article.date = article.html.css("meta[property='nv:date']").attribute("content").value
+   if !!article.html.css("meta[property='nv:date']")[0]
+     article.date = article.html.css("meta[property='nv:date']").attribute("content").value
+   else
+     article.date = article.html.css("meta[name = 'DC.date.issued']").attribute("content").value
+   end
 
   end
 
