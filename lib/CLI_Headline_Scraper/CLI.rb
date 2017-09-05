@@ -17,9 +17,10 @@ class CLI
 
   def greet
     puts "Welcome to Headline Scraper"
-    sleep(2)
+    sleep(1)
     puts "Please select which of the following articles you would like to view:"
-    sleep(2.5)
+    sleep(2)
+    puts "s"
   end
 
   def display_menu

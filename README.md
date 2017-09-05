@@ -24,6 +24,8 @@ Contributions adding functionality for additional news networks are encouraged.
 
 Contributions adding a more robust RSpec suite are also welcome.
 
+The scraper object will likely need to be occasionally maintained as the HTML formats of networks' websites changes.  If you encounter an error while using this software, please report it at the GitHub repo above.
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
