@@ -1,38 +1,28 @@
 # CLIHeadlineScraper
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/CLI_Headline_Scraper`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'CLI_Headline_Scraper'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install CLI_Headline_Scraper
+You can install this gem via `gem install CLI_Headline_Scraper`.
 
 ## Usage
 
-TODO: Write usage instructions here
+You can run this gem using the `headline_scraper` CLI command.  You will then be given a list of headlines and news networks from which to select (instructions for doing so will be provided onscreen).  
+
 
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To install this gem onto your local machine, run `bundle exec rake install`.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/jmstrick93/CLI_Headline_Scraper.
+Bug reports and pull requests are welcome on GitHub at https://github.com/jmstrick93/CLI_Headline_Scraper.  
+
+Contributions adding functionality for additional news networks are encouraged.
+
+Contributions adding a more robust RSpec suite are also welcome.
 
 ## License
 
