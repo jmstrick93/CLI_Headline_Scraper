@@ -19,7 +19,7 @@ class CLI
     puts "Welcome to Headline Scraper"
     sleep(1)
     puts "Please select which of the following articles you would like to view:"
-    sleep(1.5)
+    sleep(1.5)  
     puts ""
   end
 
