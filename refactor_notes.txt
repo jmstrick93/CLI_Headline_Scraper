@@ -1,0 +1,4 @@
+1. Make separate scraper classes for each publication (supported by a scraper module)
+2. Make it so that each Object only knows about a max of one other object.
+3. Eliminate magic numbers.
+4. Don't use 'singleton' classes.  Make a new instance of each scraper object(one for each website) and store things like its html in instance variables like @doc.

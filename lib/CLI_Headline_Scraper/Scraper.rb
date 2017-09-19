@@ -70,11 +70,11 @@ end
 def self.scrape_fox_articles
 
   html = Network.find_by_name("FOX NEWS").home_html
+    leader = [html.css("div.collection.collection-spotlight article.article.story-1 header a").text.strip, html.css("div.collection.collection-spotlight article.article.story-1 header a").attribute("href")]
 
-  leader = [html.css("div.primary h1 a").text, html.css("div.primary h1 a").attribute("href").value]
-  second = [html.css("div.top-stories a h3").first.text, html.css("div.top-stories li").first.css("a").attribute("href").value]
+    second = [html.css("div.main.main-secondary article.article.story-1 h2.title a").text, html.css("div.main.main-secondary article.article.story-1 h2.title a").attribute("href").value]
 
-  third = [html.css("div.top-stories a h3")[1].text, html.css("div.top-stories li[data-vr-contentbox = ''] a")[4].attribute("href").value]
+    third = [html.css("div.main.main-secondary article.article.story-2 h2.title a").text, html.css("div.main.main-secondary article.article.story-2 h2.title a").attribute("href").value]
 
   articles = [leader, second, third]
 
