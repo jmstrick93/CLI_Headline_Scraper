@@ -80,6 +80,7 @@ def self.scrape_fox_articles
 
 end
 
+
 def self.fox_article(article)
   article.html = self.get_page(article.url)
   article.summary = article.html.css("meta[name='description']").attribute("content").value
