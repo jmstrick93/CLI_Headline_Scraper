@@ -1,13 +1,5 @@
 #!/usr/bin/env ruby
-require 'environment'
-
-###testing conditions###
-
-
-###end testing conditions###
-
-Scraper.msnbc_homepage
-Scraper.fox_homepage
-Scraper.reuters_homepage
+puts "starting"
+require_relative '../lib/environment'
 
 CLI.new.call

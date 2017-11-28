@@ -32,15 +32,23 @@ class Article
     self.all.select{|item| item.network_name == network_name}
   end
 
+  def self.find_by_summary(word)
+
+    #cycle through all articles.
+    #look at each article's summary
+    #if summary contains word, add summary to a new array.
+    #after finished with all articles, display array.
+    self.all.select { |article| article.summary.downcase.include?(word.downcase) }
+
+
+  end
+
 
   def populate_metadata()
     #retreives metadata of reuters article -- right now just time/date.
     #1. Scrapes data from the selected article's url.(separate)
     #3. Uses that data to populate article.authors, article.date_posted, article.text.
-
     Scraper.reuters_article(self)
-
-
     article = Article.find_by_headline(headline)
 
   end

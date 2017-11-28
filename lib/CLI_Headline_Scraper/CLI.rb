@@ -1,4 +1,6 @@
 #Our CLI Controller
+
+require 'pry'
 class CLI
 
   attr_reader :time
@@ -8,6 +10,12 @@ class CLI
   end
 
   def call
+    puts "Initializing..."
+    Scraper.msnbc_homepage
+    Scraper.fox_homepage
+    Scraper.reuters_homepage
+    puts("done")
+    puts("")
 
     self.greet
     self.display_menu #initial menu selection of what you want to see
@@ -19,7 +27,7 @@ class CLI
     puts "Welcome to Headline Scraper"
     sleep(1)
     puts "Please select which of the following articles you would like to view:"
-    sleep(1.5)  
+    sleep(1.5)
     puts ""
   end
 
@@ -116,8 +124,6 @@ class CLI
         the_article = the_network.articles[selection[1]-1]
         self.article_options_menu(the_article)
       end
-
-
   end
 
   def selection_exists?(selection) #post-screens entries to make sure the valid entry actually refers to an existing item
@@ -144,8 +150,6 @@ class CLI
     end
   end
 
-
-
   def select_scrape_method(article)
 
     case article.network_name
@@ -158,11 +162,6 @@ class CLI
       Scraper.msnbc_article(article)
     end
   end
-
-
-
-
-
 
   def article_options_menu(article)
     #takes article object as an argument
@@ -186,7 +185,6 @@ class CLI
     puts "1. View article in browser."
     puts "2. Return to previous menu."
     puts "Or type 'exit'."
-
     input = gets.strip.upcase
     case input
     when "1"

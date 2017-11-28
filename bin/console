@@ -11,10 +11,4 @@ require "environment"
 # Pry.start
 require "irb"
 
-###Testing Conditions###
-
-
-
-
-###end testing conditions###
 IRB.start(__FILE__)

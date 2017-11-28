@@ -7,12 +7,13 @@ class Scraper
 #<<<<<<<<<<<<<<<<<<REUTERS SCRAPING METHODS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 def self.reuters_homepage
-
+  puts "scraping Reuters homepage"
   url = "https://www.reuters.com"
   homepage = self.get_page(url)
   reuters = Network.create_with_url("REUTERS", url)
   reuters.home_html = homepage
   self.scrape_reuters_articles.each{|article| article = Article.create_with_url(article[0],"REUTERS", article[1])}
+
 
 end
 
@@ -33,7 +34,7 @@ end
 
 
 def self.check_reuters_urls(articles)
-   #checks for and corrects common issue where MSNBC uses partial urls for internal links
+   #checks for and corrects common issue where a website uses partial urls for internal links
 
   articles.each do |article|
     if !article[1].include?("www")
@@ -59,6 +60,7 @@ end
 #<<<<<<<<<<<<<<<<<<FOX SCRAPING METHODS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 def self.fox_homepage
+  puts "scraping Fox homepage"
   url = "http://www.foxnews.com"
   homepage = self.get_page(url)
   fox = Network.create_with_url("FOX NEWS", url)
@@ -93,6 +95,7 @@ end
 #<<<<<<<<<<<<<<<MSNBC SCRAPING METHODS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   def self.msnbc_homepage
+    puts "scraping MSNBC homepage"
     url = "http://www.msnbc.com"
     homepage = self.get_page(url)
     msnbc = Network.create_with_url("MSNBC", url)
